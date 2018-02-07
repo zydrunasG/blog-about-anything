@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Tag;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -39,10 +40,13 @@ class PostsController extends Controller
 
     public function create(){
 
-        return view('posts.create');
+        $tags = Tag::all();
+
+        return view('posts.create', compact('tags'));
     }
 
     public function store(){
+
 
         $this->validate(request(),[
             'title' => 'required',
@@ -50,8 +54,11 @@ class PostsController extends Controller
         ]);
 
         auth()->user()->publish(
-            new Post(request(['title', 'body']))
+            new Post(request(['title', 'body'])),
+            new Tag(request(['tags']))
         );
+
+
 
 
         session()->flash('message', 'Your post has been successfully published');

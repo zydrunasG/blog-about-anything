@@ -20,14 +20,23 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function addComment($body)
+    public function addComment()
     {
-        /*  Comment::create([
-              'body' => request('body'),
-              'post_id' => $this->id
-          ]);*/
 
-        $this->comments()->create(compact('body'));
+       /* Comment::create([
+              'body' => request('body'),
+              'post_id' => $this->id,
+          ]);
+
+       */
+
+        $this->comments()->create([
+            'body' => request('body'),
+            'user_id' => auth()->id()
+            ]);
+   //     $user_id = $this->user_id;
+
+  //   $this->comments()->create(compact('body', 'user_id'));
     }
 
     public function scopeFilter($query, $filters)
