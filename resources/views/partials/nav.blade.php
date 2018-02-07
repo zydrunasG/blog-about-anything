@@ -1,7 +1,7 @@
 <header>
     <div class="blog-masthead">
         <div class="container">
-            <nav class="nav">
+            <nav class="nav ">
                 <a class="nav-link active" href="{{ url('/') }}">Home</a>
                 @if(Auth::check())
                     <a class="nav-link " href="{{ url('posts/create') }}">Create post</a>
@@ -21,7 +21,11 @@
                         </div>
                     </div>
                 @else
-                    <a class="nav-link ml-auto" href="{{ url('login') }}">Login</a>
+
+                        <a class="nav-link ml-auto" href="{{ url('login') }}">Login</a>
+
+                    <a class="nav-link " href="{{ url('register') }}">Register</a>
+
 
 
                 @endif
@@ -39,8 +43,8 @@
             </div>
             @endif
 
-            <h1 class="blog-title">The Bootstrap Blog</h1>
-            <p class="lead blog-description">An example blog template built with Bootstrap.</p>
+            <h1 class="blog-title">The Sample Blog</h1>
+            <p class="lead blog-description">Laravel & Boostrap</p>
         </div>
     </div>
 </header>

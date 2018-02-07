@@ -8,10 +8,14 @@
     </h2>
     <p class="blog-post-meta">{{ $post->created_at->toFormattedDateString() }} by <a href="#"> {{ $post->user->name }}</a></p>
 
+
     @if(count($post->tags))
-        <ul>
+
+        <ul class="list-inline">
+            <li class="list-inline-item">Tags:</li>
             @foreach($post->tags as $tag)
-                <li>
+                <li class="list-inline-item">
+
                     <a href="/posts/tags/{{ $tag->name }}">
                         {{ $tag->name }}
                     </a>
@@ -26,7 +30,7 @@
         <h4>Comments:</h4>
         <ul class="list-group">
 
-
+        @if(count($post->comments))
         @foreach($post->comments as $comment)
             <li class="list-group-item">
                 <strong>
@@ -36,6 +40,9 @@
             </li>
             @endforeach
         </ul>
+        @else
+            <li class="list-group-item"><strong>There is no comments, be first!</strong></li>
+        @endif
     </div>
 
     <div class="card">
